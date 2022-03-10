@@ -1,15 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
+import styles from "../components/styles/generalstyles.module.css";
+import Autoplay from "embla-carousel-autoplay";
+
 
 const EmblaCarousel = () => {
-  const [emblaRef] = useEmblaCarousel();
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false }, [Autoplay()]);
+
+  useEffect(() => {
+    if (emblaApi) {
+      // Embla API is ready
+    }
+  }, [emblaApi]);
 
   return (
-    <div className="embla" ref={emblaRef}>
-      <div className="embla__container">
-        <div className="embla__slide">Slide 1</div>
-        <div className="embla__slide">Slide 2</div>
-        <div className="embla__slide">Slide 3</div>
+    <div className={styles.embla} ref={emblaRef}>
+      <div className={styles.embla__container}>
+        <div className={styles.embla__slide}>Slide 1</div>
+        <div className={styles.embla__slide}>Slide 2</div>
+        <div className={styles.embla__slide}>Slide 3</div>
       </div>
     </div>
   );
